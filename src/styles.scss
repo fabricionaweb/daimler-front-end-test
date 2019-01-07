@@ -1,3 +1,8 @@
 @charset "UTF-8";
 
+// Modern Normalize
+// https://css-tricks.com/modern-normalize/
+@import 'libs-polyfills/modern-normalize.css';
+
+// -- THEME
 @import 'themes/default/default';
