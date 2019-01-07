@@ -6,7 +6,6 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "postinstall": "npm run build",
         "build": "npm-run-all lint css",
         "css": "npm-run-all css:precompile css:autoprefix",
         "css:autoprefix": "postcss --use autoprefixer --replace src/styles.css",
@@ -18,12 +17,15 @@
         "test": "jest --coverage",
         "watch:css": "npm run css && onchange \"src/**/*.scss\" -- npm-run-all css",
         "watch:lint": "npm run lint && onchange \"src/**/*.{scss|html|js}\" -- npm run lint",
-        "watch:test": "npm run test -- --watch"
+        "watch:test": "npm run test -- --watch",
+        "start": "npm-run-all build serve",
+        "serve": "http-serve --gzip -o -c-1 ./src"
     },
     "devDependencies": {
         "autoprefixer": "6.7.5",
         "eslint": "~5.0.0",
         "html-validator-cli": "3.1.0",
+        "http-serve": "^1.0.1",
         "jest": "^23.4.2",
         "node-sass": "~4.9.0",
         "npm-run-all": "4.0.1",
