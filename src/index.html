@@ -1,144 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Daimler - Basket</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Daimler - Basket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div>
-      <a href="https://www.daimler.com">
-      Link to Daimler Website
-      </a>
-      <h1>
-        Daimler. Expect sailing trips as well!
-      </h1>
+      <div>
+        <a href="https://www.daimler.com"> Link to Daimler Website </a>
+        <h1>Daimler. Expect sailing trips as well!</h1>
+      </div>
+      <div>
+        <ul>
+          <li><a href="https://www.daimler.com">Home</a></li>
+          <li>Shopping for the annual sailing trip</li>
+        </ul>
+      </div>
     </div>
     <div>
-      <ul>
-        <li><a href="https://www.daimler.com">Home</a></li>
-        <li>Shopping for the annual sailing trip</li>
-      </ul>
+      <div id="section-shop">
+        <h2>The Shop</h2>
+        <p>
+          Ahoy landman! Pick what you need for the big trip. You gonna be out there some days, so better leave prepared.
+        </p>
+        <p>
+          <strong>Please note: All prices are without <abbr title="Value Added Tax">VAT</abbr>!</strong>
+        </p>
+        <ol>
+          <li>
+            <div>
+              <h3>Towel</h3>
+              <p>Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.</p>
+            </div>
+            <div>
+              <p>&euro;10</p>
+              <button
+                data-shop-listing="{&quot;name&quot;: &quot;Towel&quot;, &quot;description&quot;: &quot;Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.&quot;, &quot;price&quot;: 10.00}"
+              >
+                Add to cart
+              </button>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Enlightening book</h3>
+              <p>There&rsquo;s no rush out there. Take your time for a good read.</p>
+            </div>
+            <div>
+              <p>&euro;5.99</p>
+              <button
+                data-shop-listing="{&quot;name&quot;: &quot;Enlightening book&quot;, &quot;description&quot;: &quot;There&rsquo;s no rush out there. Take your time for a good read.&quot;, &quot;price&quot;: 5.99}"
+              >
+                Add to cart
+              </button>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Waterproof camera</h3>
+              <p>Below the sea&rsquo;s surface, a hidden world. Don't miss out to bring those memories back home.</p>
+            </div>
+            <div>
+              <p>&euro;49.99</p>
+              <button
+                data-shop-listing="{&quot;name&quot;: &quot;Waterproof camera&quot;, &quot;description&quot;: &quot;Below the sea&rsquo;s surface, a hidden world. Do not miss out to bring those memories back home.&quot;, &quot;price&quot;: 49.99}"
+              >
+                Add to cart
+              </button>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Pinwheel</h3>
+              <p>Wondering what to do when there's only a light breeze? Back to your childhood!</p>
+            </div>
+            <div>
+              <p>&euro;2.50</p>
+              <button
+                data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
+              >
+                Add to cart
+              </button>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div id="section-shoppingcart">
+        <h2>Your boat's shopping cart</h2>
+        <p>&hellip;is empty.</p>
+        <form id="shoppingcart-form">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <h3>PLACEHOLDER</h3>
+                  <p>PLACEHOLDER</p>
+                  <div><button>Remove</button></div>
+                </td>
+                <td><output></output></td>
+                <td>
+                  <input type="number" min="1" value="1" />
+                  <span>
+                    <button type="button" aria-label="decrease">-</button>
+                    <button type="button" aria-label="step up">+</button>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3">
+                  <ol>
+                    <li>
+                      <label>Price before <abbr title="Value Added Tax">VAT</abbr>:</label> <output></output>
+                    </li>
+                    <li>
+                      <label><abbr title="Value Added Tax">VAT</abbr> @ <strong></strong>%:</label> <output></output>
+                    </li>
+                    <li><label>Total to be paid:</label> <output></output></li>
+                  </ol>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+          <footer><button type="submit" form="shoppingcart-form">Proceed to Checkout</button></footer>
+        </form>
+      </div>
     </div>
-  </div>
-  <div>
-    <div id="section-shop">
-      <h2>The Shop</h2>
-      <p>Ahoy landman! Pick what you need for the big trip. You gonna be out there some days, so better leave prepared.</p>
-      <p><strong>Please note: All prices are without <abbr title="Value Added Tax">VAT</abbr>!</strong></p>
-      <ol>
-        <li>
-          <div>
-            <h3>Towel</h3>
-            <p>Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.</p>
-          </div>
-          <div>
-            <p>&euro;10</p>
-            <button data-shop-listing='{"name": "Towel", "description": "Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.", "price": 10.00}'>Add to cart</button>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h3>Enlightening book</h3>
-            <p>There&rsquo;s no rush out there. Take your time for a good read.</p>
-          </div>
-          <div>
-            <p>&euro;5.99</p>
-            <button data-shop-listing='{"name": "Enlightening book", "description": "There&rsquo;s no rush out there. Take your time for a good read.", "price": 5.99}'>Add to cart</button>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h3>Waterproof camera</h3>
-            <p>Below the sea&rsquo;s surface, a hidden world. Don't miss out to bring those memories back home.</p>
-          </div>
-          <div>
-            <p>&euro;49.99</p>
-            <button data-shop-listing='{"name": "Waterproof camera", "description": "Below the sea&rsquo;s surface, a hidden world. Do not miss out to bring those memories back home.", "price": 49.99}'>Add to cart</button>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h3>Pinwheel</h3>
-            <p>Wondering what to do when there's only a light breeze? Back to your childhood!</p>
-          </div>
-          <div>
-            <p>&euro;2.50</p>
-            <button data-shop-listing='{"name": "Pinwheel", "description": "Wondering what to do with only a light breeze? Back to your childhood!", "price": 2.50}'>Add to cart</button>
-          </div>
-        </li>
-      </ol>
-    </div>
-    <div id="section-shoppingcart">
-      <h2>Your boat's shopping cart</h2>
-      <p>&hellip;is empty.</p>
-      <form id="shoppingcart-form">
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <h3>PLACEHOLDER</h3>
-                <p>PLACEHOLDER</p>
-                <div>
-                  <button>Remove</button>
-                </div>
-              </td>
-              <td>
-                <output></output>
-              </td>
-              <td>
-                <input type="number" min="1" value="1">
-                <span>
-                <button type="button" aria-label="decrease">
-                -
-                </button>
-                <button type="button" aria-label="step up">
-                +
-                </button>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3">
-                <ol>
-                  <li>
-                    <label>Price before <abbr title="Value Added Tax">VAT</abbr>:</label>
-                    <output></output>
-                  </li>
-                  <li>
-                    <label><abbr title="Value Added Tax">VAT</abbr> @ <strong></strong>%:</label>
-                    <output></output>
-                  </li>
-                  <li>
-                    <label>Total to be paid:</label>
-                    <output></output>
-                  </li>
-                </ol>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-        <footer>
-          <button type="submit" form="shoppingcart-form">Proceed to Checkout</button>
-        </footer>
-      </form>
-    </div>
-  </div>
-  <div>
-    <a href="https://www.daimler.com">
-    Link to Daimler Website
-    </a>
-    &copy; 2018
-  </div>
-</body>
+    <div><a href="https://www.daimler.com"> Link to Daimler Website </a> &copy; 2018</div>
+  </body>
 </html>
