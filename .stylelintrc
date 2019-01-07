@@ -1,6 +1,7 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
+    "at-rule-no-unknown": null,
     "indentation": null,
     "selector-max-specificity": "0,3,0",
     "selector-max-compound-selectors": 4,
