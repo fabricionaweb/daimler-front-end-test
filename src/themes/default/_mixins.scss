@@ -58,3 +58,9 @@
     background: $c-primary-lighter;
   }
 }
+
+@mixin on-large-screen {
+  @media (min-width: $breakpoint-large-px) {
+    @content;
+  }
+}
