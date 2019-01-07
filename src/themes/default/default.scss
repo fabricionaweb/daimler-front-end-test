@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 // -- VARIABLES
 //
 // Please note: the 'large' in variable names refers to large viewports
@@ -33,11 +31,11 @@ $line-height-factor-base: 1.5;
 // -- Paths
 //  considering that the entry point is styles.scss
 $path-theme-dir: 'themes/default';
-$path-image-title-small: '#{$path-theme-dir}/title.small.png';
-$path-image-title-small-2x: '#{$path-theme-dir}/title.small.2x.png';
-$path-image-title-large: '#{$path-theme-dir}/title.large.png';
-$path-image-title-large-2x: '#{$path-theme-dir}/title.large.2x.png';
-$path-logo-svg: '#{$path-theme-dir}/logo.svg';
+$path-image-title-small: '#{$path-theme-dir}/images/title.small.png';
+$path-image-title-small-2x: '#{$path-theme-dir}/images/title.small.2x.png';
+$path-image-title-large: '#{$path-theme-dir}/images/title.large.png';
+$path-image-title-large-2x: '#{$path-theme-dir}/images/title.large.2x.png';
+$path-logo-svg: '#{$path-theme-dir}/images/logo.svg';
 
 // -- horizontal rhytm
 $horizontal-rythm-spacing-text: 10px;
