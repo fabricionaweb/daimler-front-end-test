@@ -1,0 +1,60 @@
+// -- MIXINS
+
+@mixin theme-background {
+  background: linear-gradient(-22deg, $c-primary-lighter 30%, $c-primary 100%);
+}
+
+@mixin link-with-logo {
+  display: inline-block;
+  color: transparent;
+  background-image: url('#{$path-logo-svg}');
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-size: 20px;
+  height: 38px;
+
+  &:link,
+  &:visited {
+    color: transparent;
+  }
+}
+
+@mixin remove-button-appearance {
+  box-shadow: none;
+  background-color: transparent;
+  transition: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin text-button {
+  @include remove-button-appearance;
+
+  color: $c-primary;
+  font-size: $font-size-base;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin cart-button {
+  @include remove-button-appearance;
+
+  background: $c-primary;
+  border-radius: 6px;
+  padding: $vertical-rythm-spacing-text;
+  font-size: $font-size-base;
+  color: $c-secondary;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover,
+  &:focus {
+    background: $c-primary-lighter;
+  }
+}

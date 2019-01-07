@@ -1,0 +1,18 @@
+// -- UTILS
+
+.is-hidden {
+  display: none;
+}
+
+// Hide only visually, but have it available for screenreaders: h5bp.com/v
+.is-visually-hidden {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+
+  // Extends the .visuallyhidden class to allow the element to be focusable
+  // when navigated to via the keyboard: h5bp.com/p
+  &.is-focusable:focus {
+    position: static;
+    clip: auto;
+  }
+}

@@ -1,0 +1,49 @@
+// -- VARIABLES
+//
+// Please note: the 'large' in variable names refers to large viewports
+
+// -- Colors
+$c-primary: #311b92;
+$c-primary-lighter: lighten($c-primary, 30%);
+$c-secondary: #fff;
+$c-secondary-dark: darken($c-secondary, 3%);
+$c-secondary-darker: darken($c-secondary, 20%);
+
+// -- Font weights
+$font-weight-base: 300;
+$font-weight-regular: $font-weight-base;
+$font-weight-bold: 400;
+$font-weight-bolder: 600;
+
+// -- Font sizes
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-headline-primary: 30px;
+$font-size-headline-primary-large: 42px;
+$font-size-headline-component: 30px;
+$font-size-headline-component-large: 35px;
+$font-size-table-header: 25px;
+$font-size-final-output: 22px;
+
+// -- Line heights
+$line-height-factor-base: 1.5;
+
+// -- Paths
+// Considering that the entry point is styles.scss
+$path-theme-dir: 'themes/default';
+$path-image-title-small: '#{$path-theme-dir}/images/title.small.png';
+$path-image-title-small-2x: '#{$path-theme-dir}/images/title.small.2x.png';
+$path-image-title-large: '#{$path-theme-dir}/images/title.large.png';
+$path-image-title-large-2x: '#{$path-theme-dir}/images/title.large.2x.png';
+$path-logo-svg: '#{$path-theme-dir}/images/logo.svg';
+
+// -- Horizontal rhytm
+$horizontal-rythm-spacing-text: 10px;
+
+// -- Vertical rhytm
+$vertical-rythm-spacing-component: 30px;
+$vertical-rythm-spacing-text: 10px;
+
+// -- Page
+$breakpoint-large-px: 800px;
+$page-max-width: 1180px;
