@@ -1,0 +1,13 @@
+// -- HEADINGS
+
+.headline {
+  color: $c-primary;
+  font-size: $font-size-headline-component;
+  font-weight: $font-weight-regular;
+  margin-top: 0;
+  margin-bottom: $vertical-rythm-spacing-text;
+
+  @include on-large-screen {
+    font-size: $font-size-headline-component-large;
+  }
+}
