@@ -1,0 +1,34 @@
+// -- SHOPPING WRAPPER
+
+.shop {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: $vertical-rythm-spacing-component;
+  margin-left: -$horizontal-rythm-spacing-text;
+  margin-right: -$horizontal-rythm-spacing-text;
+
+  @include on-large-screen {
+    flex-direction: row;
+  }
+
+  &__content {
+    flex: 1;
+    flex-basis: $shop-content-min-width;
+    margin-left: $horizontal-rythm-spacing-text;
+    margin-right: $horizontal-rythm-spacing-text;
+    margin-bottom: $vertical-rythm-spacing-component;
+  }
+
+  &__sidebar {
+    flex: 1;
+    background-color: $c-secondary-dark;
+    margin-left: $horizontal-rythm-spacing-text;
+    margin-right: $horizontal-rythm-spacing-text;
+    margin-bottom: $vertical-rythm-spacing-component;
+    padding: $shop-sidebar-rythm-spacing-text;
+
+    @include on-large-screen {
+      min-width: $shop-sidebar-min-width;
+    }
+  }
+}
