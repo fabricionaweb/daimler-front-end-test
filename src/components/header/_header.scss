@@ -1,0 +1,62 @@
+// -- HEADER, LOGO, TITLE
+
+.header {
+  @include theme-background;
+
+  height: $header-height;
+  padding-top: $vertical-rythm-spacing-text;
+  padding-bottom: $vertical-rythm-spacing-text;
+  position: relative;
+
+  @include on-large-screen {
+    height: $header-height-large;
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url($path-image-title-small);
+    background-repeat: repeat-x;
+    background-size: auto 150%; // this is a magic value to hide the sea, sorry
+
+    @include on-retina-screen {
+      background-image: url($path-image-title-small-2x);
+    }
+
+    @include on-large-screen {
+      background-position: top center;
+      background-image: url($path-image-title-large);
+
+      @include on-retina-screen {
+        background-image: url($path-image-title-large-2x);
+      }
+    }
+  }
+
+  &__container {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__logo {
+    @include link-with-logo;
+  }
+
+  &__title {
+    color: $c-secondary;
+    font-size: $font-size-headline-primary;
+    flex: 1 0 100%;
+    text-align: center;
+    margin-top: 0;
+
+    @include on-large-screen {
+      font-size: $font-size-headline-primary-large;
+      font-weight: $font-weight-regular;
+    }
+  }
+}
