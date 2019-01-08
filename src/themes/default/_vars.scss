@@ -51,3 +51,7 @@ $page-max-width: 1180px;
 // -- Header
 $header-height: 280px;
 $header-height-large: 350px;
+
+// -- Pixel Density to got @2x images
+// https://css-tricks.com/snippets/css/retina-display-media-query/
+$screen-device-resolution: 2dppx;

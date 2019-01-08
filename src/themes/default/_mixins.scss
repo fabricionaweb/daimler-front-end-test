@@ -64,3 +64,9 @@
     @content;
   }
 }
+
+@mixin on-retina-screen {
+  @media (min-resolution: $screen-device-resolution) {
+    @content;
+  }
+}
