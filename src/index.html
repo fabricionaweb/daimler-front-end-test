@@ -12,13 +12,13 @@
         <a href="https://www.daimler.com" class="header__logo" title="Daimler">Link to Daimler Website</a>
         <h1 class="header__title"><span class="is-visually-hidden">Daimler.</span> Expect sailing trips as well!</h1>
       </div>
-      <ol class="container breadcrumbs">
-        <li><a href="https://www.daimler.com">Home</a></li>
-        <li class="breadcrumbs--current">Shopping for the annual sailing trip</li>
-      </ol>
     </header>
-    <div>
-      <div id="section-shop">
+    <main class="container">
+      <ol class="breadcrumbs">
+        <li class="breadcrumbs__item"><a href="https://www.daimler.com">Home</a></li>
+        <li class="breadcrumbs__item breadcrumbs__item--active">Shopping for the annual sailing trip</li>
+      </ol>
+      <section id="section-shop">
         <h2>The Shop</h2>
         <p>
           Ahoy landman! Pick what you need for the big trip. You gonna be out there some days, so better leave prepared.
@@ -84,8 +84,8 @@
             </div>
           </li>
         </ol>
-      </div>
-      <div id="section-shoppingcart">
+      </section>
+      <aside id="section-shoppingcart">
         <h2>Your boat's shopping cart</h2>
         <p>&hellip;is empty.</p>
         <form id="shoppingcart-form">
@@ -132,8 +132,12 @@
           </table>
           <footer><button type="submit" form="shoppingcart-form">Proceed to Checkout</button></footer>
         </form>
+      </aside>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p><a href="https://www.daimler.com">Link to Daimler Website</a> &copy; 2019</p>
       </div>
-    </div>
-    <div><a href="https://www.daimler.com"> Link to Daimler Website </a> &copy; 2018</div>
+    </footer>
   </body>
 </html>
