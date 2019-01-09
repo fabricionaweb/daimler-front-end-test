@@ -34,7 +34,7 @@
           <ol class="products">
             <li class="products__item">
               <article class="products__wrap">
-                <h3 class="products__label">Towel</h3>
+                <h3 class="products__name">Towel</h3>
                 <p class="products__description">
                   Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.
                 </p>
@@ -53,7 +53,7 @@
 
             <li class="products__item">
               <article class="products__wrap">
-                <h3 class="products__label">Enlightening book</h3>
+                <h3 class="products__name">Enlightening book</h3>
                 <p class="products__description">There&rsquo;s no rush out there. Take your time for a good read.</p>
 
                 <footer class="products__footer">
@@ -70,7 +70,7 @@
 
             <li class="products__item">
               <article class="products__wrap">
-                <h3 class="products__label">Waterproof camera</h3>
+                <h3 class="products__name">Waterproof camera</h3>
                 <p class="products__description">
                   Below the sea&rsquo;s surface, a hidden world. Don't miss out to bring those memories back home.
                 </p>
@@ -89,7 +89,7 @@
 
             <li class="products__item">
               <article class="products__wrap">
-                <h3 class="products__label">Pinwheel</h3>
+                <h3 class="products__name">Pinwheel</h3>
                 <p class="products__description">
                   Wondering what to do when there's only a light breeze? Back to your childhood!
                 </p>
@@ -110,50 +110,100 @@
 
         <aside class="shop__sidebar">
           <h2 class="headline">Your boat's shopping cart</h2>
-          <p>&hellip;is empty.</p>
+          <!-- <p>&hellip;is empty.</p> -->
           <form id="shoppingcart-form">
-            <table>
+            <table class="shoppingcart">
               <thead>
                 <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
+                  <th class="shoppingcart__head shoppingcart__head--product">Product</th>
+                  <th class="shoppingcart__head">Price</th>
+                  <th class="shoppingcart__head shoppingcart__head--right">Quantity</th>
                 </tr>
               </thead>
+
               <tbody>
                 <tr>
-                  <td>
-                    <h3>PLACEHOLDER</h3>
-                    <p>PLACEHOLDER</p>
-                    <div><button>Remove</button></div>
+                  <td class="shoppingcart__item">
+                    <article class="products__wrap">
+                      <h3 class="products__name">Pinwheel</h3>
+                      <p class="products__description">
+                        Wondering what to do when there's only a light breeze? Back to your childhood!
+                      </p>
+
+                      <footer>
+                        <button
+                          class="products__add-to-cart"
+                          data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
+                        >
+                          Remove
+                        </button>
+                      </footer>
+                    </article>
                   </td>
-                  <td><output></output></td>
-                  <td>
-                    <input type="number" min="1" value="1" />
-                    <span>
-                      <button type="button" aria-label="decrease">-</button>
-                      <button type="button" aria-label="step up">+</button>
-                    </span>
+                  <td class="shoppingcart__item"><output class="shoppingcart__item__price">&euro;2.50</output></td>
+                  <td class="shoppingcart__item shoppingcart__item--right">
+                    <input class="shoppingcart__item__quantity" type="number" min="1" value="1" />
+                    <button class="shoppingcart__item__button" type="button" aria-label="decrease">-</button>
+                    <button class="shoppingcart__item__button" type="button" aria-label="step up">+</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="shoppingcart__item">
+                    <article class="products__wrap">
+                      <h3 class="products__name">Pinwheel</h3>
+                      <p class="products__description">
+                        Wondering what to do when there's only a light breeze? Back to your childhood!
+                      </p>
+
+                      <footer>
+                        <button
+                          class="products__add-to-cart"
+                          data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
+                        >
+                          Remove
+                        </button>
+                      </footer>
+                    </article>
+                  </td>
+                  <td class="shoppingcart__item"><output class="shoppingcart__item__price">&euro;2.50</output></td>
+                  <td class="shoppingcart__item shoppingcart__item--right">
+                    <input class="shoppingcart__item__quantity" type="number" min="1" value="1" />
+                    <button class="shoppingcart__item__button" type="button" aria-label="decrease">-</button>
+                    <button class="shoppingcart__item__button" type="button" aria-label="step up">+</button>
                   </td>
                 </tr>
               </tbody>
+
               <tfoot>
                 <tr>
-                  <td colspan="3">
-                    <ol>
-                      <li>
-                        <label>Price before <abbr title="Value Added Tax">VAT</abbr>:</label> <output></output>
+                  <td colspan="3" class="shoppingcart__foot">
+                    <ol class="shoppingcart__foot__resume">
+                      <li class="shoppingcart__foot__resume__row">
+                        <label class="shoppingcart__foot__label">
+                          Price before <abbr title="Value Added Tax">VAT</abbr>:
+                        </label>
+                        <output class="shoppingcart__foot__price">&euro;2.50</output>
                       </li>
-                      <li>
-                        <label><abbr title="Value Added Tax">VAT</abbr> @ <strong></strong>%:</label> <output></output>
+                      <li class="shoppingcart__foot__resume__row">
+                        <label class="shoppingcart__foot__label">
+                          <abbr title="Value Added Tax">VAT</abbr> @ <strong>20</strong>%:
+                        </label>
+                        <output class="shoppingcart__foot__price">&euro;2.50</output>
                       </li>
-                      <li><label>Total to be paid:</label> <output></output></li>
+                      <li class="shoppingcart__foot__resume__row shoppingcart__foot__resume__row--final">
+                        <label class="shoppingcart__foot__label">Total to be paid:</label>
+                        <output class="shoppingcart__foot__price shoppingcart__foot__price--final">&euro;2.50</output>
+                      </li>
                     </ol>
                   </td>
                 </tr>
               </tfoot>
             </table>
-            <footer><button type="submit" form="shoppingcart-form">Proceed to Checkout</button></footer>
+
+            <footer>
+              <button type="submit" form="shoppingcart-form" class="shoppingcart__checkout">Proceed to Checkout</button>
+            </footer>
           </form>
         </aside>
       </div>

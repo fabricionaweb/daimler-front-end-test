@@ -34,6 +34,7 @@
 
   color: $c-primary;
   font-size: $font-size-base;
+  line-height: 1.5;
 
   &:hover {
     cursor: pointer;
@@ -56,6 +57,22 @@
   &:hover,
   &:focus {
     background: $c-primary-lighter;
+  }
+}
+
+@mixin cart-quantity {
+  background: $c-secondary;
+  border: 1px solid $c-secondary-darker;
+  padding: 3px;
+  font-size: $font-size-base;
+  color: inherit;
+  text-align: center;
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }
 
