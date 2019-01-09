@@ -1,0 +1,17 @@
+// -- FOOTER
+
+.footer {
+  @include theme-background;
+
+  color: $c-secondary;
+  font-weight: $font-weight-bolder;
+  padding-top: $vertical-rythm-spacing-text;
+  padding-bottom: $vertical-rythm-spacing-text;
+  height: $footer-height;
+
+  &__logo {
+    @include link-with-logo;
+
+    background-position: left center;
+  }
+}

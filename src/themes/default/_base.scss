@@ -18,3 +18,14 @@ body {
   max-width: $page-max-width;
   position: relative;
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  padding-top: $vertical-rythm-spacing-component;
+  min-height: calc(100vh - #{$header-height + $footer-height});
+
+  @include on-large-screen {
+    min-height: calc(100vh - #{$header-height-large + $footer-height});
+  }
+}

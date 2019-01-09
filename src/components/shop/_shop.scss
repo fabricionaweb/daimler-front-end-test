@@ -1,9 +1,10 @@
 // -- SHOPPING WRAPPER
 
 .shop {
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
-  margin-top: $vertical-rythm-spacing-component;
+  padding-top: $vertical-rythm-spacing-component;
   margin-left: -$horizontal-rythm-spacing-text;
   margin-right: -$horizontal-rythm-spacing-text;
 
