@@ -1,0 +1,58 @@
+// -- PRODUCTS IN LIST AND CART
+
+.products {
+  list-style: none;
+  margin: 0 -$products-item-rythm-spacing-component;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  @include on-large-screen {
+    flex-direction: row;
+  }
+
+  &__item {
+    flex: 1;
+    min-width: calc(50% - #{$horizontal-rythm-spacing-text});
+    border: 1px dashed $c-secondary-darker;
+    padding: $vertical-rythm-spacing-text $horizontal-rythm-spacing-text;
+    margin: $products-item-rythm-spacing-component;
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &__label {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    margin-top: 0;
+    margin-bottom: $vertical-rythm-spacing-text;
+  }
+
+  &__description {
+    margin-top: 0;
+    margin-bottom: $vertical-rythm-spacing-text;
+  }
+
+  &__footer {
+    flex: 1;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__price {
+    margin: 0;
+    font-weight: $font-weight-bold;
+  }
+
+  &__add-to-cart {
+    @include text-button;
+  }
+}

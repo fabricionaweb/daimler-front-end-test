@@ -13,6 +13,7 @@
         <h1 class="header__title"><span class="is-visually-hidden">Daimler.</span> Expect sailing trips as well!</h1>
       </div>
     </header>
+
     <main class="container main">
       <ol class="breadcrumbs">
         <li class="breadcrumbs__item"><a href="https://www.daimler.com">Home</a></li>
@@ -29,65 +30,84 @@
           <p>
             <strong>Please note: All prices are without <abbr title="Value Added Tax">VAT</abbr>!</strong>
           </p>
+
           <ol class="products">
-            <li>
-              <div>
-                <h3>Towel</h3>
-                <p>Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.</p>
-              </div>
-              <div>
-                <p>&euro;10</p>
-                <button
-                  data-shop-listing="{&quot;name&quot;: &quot;Towel&quot;, &quot;description&quot;: &quot;Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.&quot;, &quot;price&quot;: 10.00}"
-                >
-                  Add to cart
-                </button>
-              </div>
+            <li class="products__item">
+              <article class="products__wrap">
+                <h3 class="products__label">Towel</h3>
+                <p class="products__description">
+                  Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.
+                </p>
+
+                <footer class="products__footer">
+                  <p class="products__price">&euro;10</p>
+                  <button
+                    class="products__add-to-cart"
+                    data-shop-listing="{&quot;name&quot;: &quot;Towel&quot;, &quot;description&quot;: &quot;Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.&quot;, &quot;price&quot;: 10.00}"
+                  >
+                    Add to cart
+                  </button>
+                </footer>
+              </article>
             </li>
-            <li>
-              <div>
-                <h3>Enlightening book</h3>
-                <p>There&rsquo;s no rush out there. Take your time for a good read.</p>
-              </div>
-              <div>
-                <p>&euro;5.99</p>
-                <button
-                  data-shop-listing="{&quot;name&quot;: &quot;Enlightening book&quot;, &quot;description&quot;: &quot;There&rsquo;s no rush out there. Take your time for a good read.&quot;, &quot;price&quot;: 5.99}"
-                >
-                  Add to cart
-                </button>
-              </div>
+
+            <li class="products__item">
+              <article class="products__wrap">
+                <h3 class="products__label">Enlightening book</h3>
+                <p class="products__description">There&rsquo;s no rush out there. Take your time for a good read.</p>
+
+                <footer class="products__footer">
+                  <p class="products__price">&euro;5.99</p>
+                  <button
+                    class="products__add-to-cart"
+                    data-shop-listing="{&quot;name&quot;: &quot;Enlightening book&quot;, &quot;description&quot;: &quot;There&rsquo;s no rush out there. Take your time for a good read.&quot;, &quot;price&quot;: 5.99}"
+                  >
+                    Add to cart
+                  </button>
+                </footer>
+              </article>
             </li>
-            <li>
-              <div>
-                <h3>Waterproof camera</h3>
-                <p>Below the sea&rsquo;s surface, a hidden world. Don't miss out to bring those memories back home.</p>
-              </div>
-              <div>
-                <p>&euro;49.99</p>
-                <button
-                  data-shop-listing="{&quot;name&quot;: &quot;Waterproof camera&quot;, &quot;description&quot;: &quot;Below the sea&rsquo;s surface, a hidden world. Do not miss out to bring those memories back home.&quot;, &quot;price&quot;: 49.99}"
-                >
-                  Add to cart
-                </button>
-              </div>
+
+            <li class="products__item">
+              <article class="products__wrap">
+                <h3 class="products__label">Waterproof camera</h3>
+                <p class="products__description">
+                  Below the sea&rsquo;s surface, a hidden world. Don't miss out to bring those memories back home.
+                </p>
+
+                <footer class="products__footer">
+                  <p class="products__price">&euro;49.99</p>
+                  <button
+                    class="products__add-to-cart"
+                    data-shop-listing="{&quot;name&quot;: &quot;Waterproof camera&quot;, &quot;description&quot;: &quot;Below the sea&rsquo;s surface, a hidden world. Do not miss out to bring those memories back home.&quot;, &quot;price&quot;: 49.99}"
+                  >
+                    Add to cart
+                  </button>
+                </footer>
+              </article>
             </li>
-            <li>
-              <div>
-                <h3>Pinwheel</h3>
-                <p>Wondering what to do when there's only a light breeze? Back to your childhood!</p>
-              </div>
-              <div>
-                <p>&euro;2.50</p>
-                <button
-                  data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
-                >
-                  Add to cart
-                </button>
-              </div>
+
+            <li class="products__item">
+              <article class="products__wrap">
+                <h3 class="products__label">Pinwheel</h3>
+                <p class="products__description">
+                  Wondering what to do when there's only a light breeze? Back to your childhood!
+                </p>
+
+                <footer class="products__footer">
+                  <p class="products__price">&euro;2.50</p>
+                  <button
+                    class="products__add-to-cart"
+                    data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
+                  >
+                    Add to cart
+                  </button>
+                </footer>
+              </article>
             </li>
           </ol>
         </section>
+
         <aside class="shop__sidebar">
           <h2 class="headline">Your boat's shopping cart</h2>
           <p>&hellip;is empty.</p>
@@ -138,6 +158,7 @@
         </aside>
       </div>
     </main>
+
     <footer class="footer">
       <div class="container">
         <a href="https://www.daimler.com" class="footer__logo" title="Daimler">Link to Daimler Website</a> &copy; 2019
