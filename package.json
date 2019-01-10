@@ -40,6 +40,10 @@
     },
     "jest": {
         "testEnvironment": "node",
+        "collectCoverage": true,
+        "coverageReporters": [
+          "html"
+        ],
         "globals": {
             "window": {}
         }
