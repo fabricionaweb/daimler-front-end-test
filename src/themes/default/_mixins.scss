@@ -58,6 +58,11 @@
   &:focus {
     background: $c-primary-lighter;
   }
+
+  &[disabled] {
+    cursor: default;
+    background: $c-primary-lighter;
+  }
 }
 
 @mixin cart-quantity {
