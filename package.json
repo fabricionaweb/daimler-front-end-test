@@ -7,9 +7,9 @@
     "private": true,
     "scripts": {
         "build": "npm-run-all lint css",
-        "css": "npm-run-all css:precompile css:autoprefix",
-        "css:autoprefix": "postcss --use autoprefixer --replace ./src/styles.css",
+        "css": "npm-run-all css:precompile css:postcompile",
         "css:precompile": "node-sass --include-path ./src/libs-polyfills --output-style expanded --output ./src ./src/styles.scss",
+        "css:postcompile": "postcss --use autoprefixer --use css-mqpacker --replace ./src/styles.css",
         "lint": "npm-run-all --parallel lint:*",
         "lint:css": "stylelint \"./src/**/*.scss\"",
         "lint:js": "eslint --ignore-pattern ./src/libs-polyfills ./src/**/*.js",
@@ -23,6 +23,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^9.4.4",
+        "css-mqpacker": "^7.0.0",
         "eslint": "^5.12.0",
         "html-validator-cli": "^4.1.4",
         "http-serve": "^1.0.1",
