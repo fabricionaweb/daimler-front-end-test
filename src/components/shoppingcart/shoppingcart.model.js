@@ -7,6 +7,11 @@
     const _defaultState = {
       VATRate: 0,
       products: [],
+      total: {
+        beforeVAT: 0,
+        VAT: 0,
+        afterVAT: 0,
+      },
     };
 
     const _getProductOnCart = (product) => {

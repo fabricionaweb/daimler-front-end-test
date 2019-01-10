@@ -2,7 +2,7 @@
   root[NAMESPACE] = root[NAMESPACE] || {};
 
   const _sharedModel = new root[NAMESPACE].shoppingcartModel();
-  _sharedModel.init();
+  _sharedModel.init({ VATRate: 20 });
 
   root[NAMESPACE][MODULE_NAME] = function () {
     return {
