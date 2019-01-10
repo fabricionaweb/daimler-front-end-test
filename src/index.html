@@ -123,14 +123,30 @@
                     <h3 data-item-name class="products__name"></h3>
                     <p data-item-description class="products__description"></p>
 
-                    <footer><button class="products__button">Remove</button></footer>
+                    <footer>
+                      <button data-component="removetocartController" class="products__button">Remove</button>
+                    </footer>
                   </article>
                 </td>
                 <td class="shoppingcart__item"><output class="shoppingcart__item__price"></output></td>
                 <td class="shoppingcart__item shoppingcart__item--right">
                   <input data-item-quantity class="shoppingcart__item__quantity" type="number" min="1" value="1" />
-                  <button class="shoppingcart__item__button" type="button" aria-label="decrease">-</button>
-                  <button class="shoppingcart__item__button" type="button" aria-label="step up">+</button>
+                  <button
+                    data-component="decrease"
+                    class="shoppingcart__item__button"
+                    type="button"
+                    aria-label="decrease"
+                  >
+                    -
+                  </button>
+                  <button
+                    data-component="increase"
+                    class="shoppingcart__item__button"
+                    type="button"
+                    aria-label="step up"
+                  >
+                    +
+                  </button>
                 </td>
               </tr>
             </template>
@@ -192,6 +208,7 @@
     <script src="components/shoppingcart/shoppingcart.view.js"></script>
     <script src="components/shoppingcart/shoppingcart.model.js"></script>
     <script src="components/products/addtocart.controller.js"></script>
+    <script src="components/page/componentloader.js"></script>
     <script src="main.js"></script>
   </body>
 </html>

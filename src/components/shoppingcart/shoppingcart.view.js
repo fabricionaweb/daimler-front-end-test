@@ -1,17 +1,15 @@
 (function (root, MODULE_NAME, NAMESPACE) {
   root[NAMESPACE] = root[NAMESPACE] || {};
 
-  let _$shopForm, _$template;
+  let _$shopForm, _$template, _loader;
   const _options = {
-    shopForm: {
-      selector: '[data-shop-form]',
-      tbody: '[data-shop-tbody]',
-      template: {
-        selector: '[data-shop-item-template]',
-        productName: '[data-item-name]',
-        productDescription: '[data-item-description]',
-        productQuantity: '[data-item-quantity]',
-      },
+    shopForm: '[data-shop-form]',
+    tbody: '[data-shop-tbody]',
+    template: {
+      selector: '[data-shop-item-template]',
+      productName: '[data-item-name]',
+      productDescription: '[data-item-description]',
+      productQuantity: '[data-item-quantity]',
     },
   };
 
@@ -20,10 +18,10 @@
     const _displayShopForm = () => _$shopForm.removeAttribute('hidden');
 
     const _buildProductsRowDOM = (product) => {
-      const { template } = _options.shopForm;
-      const { productName, productDescription, productQuantity } = template;
-
+      const { productName, productDescription, productQuantity } = _options.template;
       const $template = document.importNode(_$template.content, true);
+
+      $template.firstElementChild.setAttribute('data-product', JSON.stringify(product));
 
       $template.querySelector(productName).innerText = product.name;
       $template.querySelector(productDescription).innerText = product.description;
@@ -33,9 +31,7 @@
     };
 
     const _updateShopFormProductsDOM = (products) => {
-      const { tbody } = _options.shopForm;
-
-      const $tbody = document.querySelector(tbody);
+      const $tbody = document.querySelector(_options.tbody);
       const $fragment = $tbody.cloneNode();
 
       products.map(_buildProductsRowDOM).map(($tr) => $fragment.appendChild($tr));
@@ -45,10 +41,12 @@
 
     return {
       init: function () {
-        const { shopForm } = _options;
+        const { shopForm, template } = _options;
 
-        _$shopForm = _$shopForm || document.querySelector(shopForm.selector);
-        _$template = _$template || document.querySelector(shopForm.template.selector);
+        _$shopForm = _$shopForm || document.querySelector(shopForm);
+        _$template = _$template || document.querySelector(template.selector);
+
+        _loader = _loader || new root[NAMESPACE].componentLoader();
       },
 
       refresh: function (cart) {
@@ -60,6 +58,14 @@
 
         _updateShopFormProductsDOM(products);
         _displayShopForm();
+
+        this.componentsLoader();
+      },
+
+      componentsLoader: function () {
+        const elements = _$shopForm.querySelectorAll('[data-component]');
+
+        _loader.init(elements);
       },
     };
   };
