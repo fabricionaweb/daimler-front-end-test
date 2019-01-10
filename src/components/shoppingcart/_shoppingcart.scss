@@ -4,6 +4,10 @@
   width: 100%;
   border-collapse: collapse;
 
+  &[hidden] + &__empty {
+    display: block;
+  }
+
   &__head {
     color: $c-primary;
     font-size: $font-size-table-header;
@@ -49,22 +53,20 @@
     }
   }
 
-  &__foot {
-    border-bottom: 1px dashed $c-secondary-darker;
+  &__resume {
+    list-style: none;
+    padding: 0;
+    margin: $vertical-rythm-spacing-text 0;
+    text-align: right;
 
-    &__resume {
-      list-style: none;
-      padding: 0;
+    &__row {
       margin: $vertical-rythm-spacing-text 0;
-      text-align: right;
 
-      &__row {
-        margin: $vertical-rythm-spacing-text 0;
-      }
-
-      &__row--final {
+      &--final {
         border-top: 1px solid $c-secondary-darker;
+        border-bottom: 1px dashed $c-secondary-darker;
         padding-top: $vertical-rythm-spacing-text;
+        padding-bottom: $vertical-rythm-spacing-text;
       }
     }
 
@@ -88,6 +90,6 @@
     @include cart-button;
 
     float: right;
-    margin-top: $shop-sidebar-rythm-spacing-text;
+    margin-top: $vertical-rythm-spacing-text;
   }
 }

@@ -52,7 +52,7 @@
     font-weight: $font-weight-bold;
   }
 
-  &__add-to-cart {
+  &__button {
     @include text-button;
   }
 }

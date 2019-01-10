@@ -42,7 +42,7 @@
                 <footer class="products__footer">
                   <p class="products__price">&euro;10</p>
                   <button
-                    class="products__add-to-cart"
+                    class="products__button"
                     data-shop-listing="{&quot;name&quot;: &quot;Towel&quot;, &quot;description&quot;: &quot;Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.&quot;, &quot;price&quot;: 10.00}"
                   >
                     Add to cart
@@ -59,7 +59,7 @@
                 <footer class="products__footer">
                   <p class="products__price">&euro;5.99</p>
                   <button
-                    class="products__add-to-cart"
+                    class="products__button"
                     data-shop-listing="{&quot;name&quot;: &quot;Enlightening book&quot;, &quot;description&quot;: &quot;There&rsquo;s no rush out there. Take your time for a good read.&quot;, &quot;price&quot;: 5.99}"
                   >
                     Add to cart
@@ -78,7 +78,7 @@
                 <footer class="products__footer">
                   <p class="products__price">&euro;49.99</p>
                   <button
-                    class="products__add-to-cart"
+                    class="products__button"
                     data-shop-listing="{&quot;name&quot;: &quot;Waterproof camera&quot;, &quot;description&quot;: &quot;Below the sea&rsquo;s surface, a hidden world. Do not miss out to bring those memories back home.&quot;, &quot;price&quot;: 49.99}"
                   >
                     Add to cart
@@ -97,7 +97,7 @@
                 <footer class="products__footer">
                   <p class="products__price">&euro;2.50</p>
                   <button
-                    class="products__add-to-cart"
+                    class="products__button"
                     data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
                   >
                     Add to cart
@@ -110,9 +110,9 @@
 
         <aside class="shop__sidebar">
           <h2 class="headline">Your boat's shopping cart</h2>
-          <!-- <p>&hellip;is empty.</p> -->
+
           <form id="shoppingcart-form">
-            <table class="shoppingcart">
+            <table class="shoppingcart" data-shop-form hidden>
               <thead>
                 <tr>
                   <th class="shoppingcart__head shoppingcart__head--product">Product</th>
@@ -121,89 +121,59 @@
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td class="shoppingcart__item">
-                    <article class="products__wrap">
-                      <h3 class="products__name">Pinwheel</h3>
-                      <p class="products__description">
-                        Wondering what to do when there's only a light breeze? Back to your childhood!
-                      </p>
-
-                      <footer>
-                        <button
-                          class="products__add-to-cart"
-                          data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
-                        >
-                          Remove
-                        </button>
-                      </footer>
-                    </article>
-                  </td>
-                  <td class="shoppingcart__item"><output class="shoppingcart__item__price">&euro;2.50</output></td>
-                  <td class="shoppingcart__item shoppingcart__item--right">
-                    <input class="shoppingcart__item__quantity" type="number" min="1" value="1" />
-                    <button class="shoppingcart__item__button" type="button" aria-label="decrease">-</button>
-                    <button class="shoppingcart__item__button" type="button" aria-label="step up">+</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="shoppingcart__item">
-                    <article class="products__wrap">
-                      <h3 class="products__name">Pinwheel</h3>
-                      <p class="products__description">
-                        Wondering what to do when there's only a light breeze? Back to your childhood!
-                      </p>
-
-                      <footer>
-                        <button
-                          class="products__add-to-cart"
-                          data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
-                        >
-                          Remove
-                        </button>
-                      </footer>
-                    </article>
-                  </td>
-                  <td class="shoppingcart__item"><output class="shoppingcart__item__price">&euro;2.50</output></td>
-                  <td class="shoppingcart__item shoppingcart__item--right">
-                    <input class="shoppingcart__item__quantity" type="number" min="1" value="1" />
-                    <button class="shoppingcart__item__button" type="button" aria-label="decrease">-</button>
-                    <button class="shoppingcart__item__button" type="button" aria-label="step up">+</button>
-                  </td>
-                </tr>
-              </tbody>
+              <tbody data-shop-tbody></tbody>
 
               <tfoot>
                 <tr>
-                  <td colspan="3" class="shoppingcart__foot">
-                    <ol class="shoppingcart__foot__resume">
-                      <li class="shoppingcart__foot__resume__row">
-                        <label class="shoppingcart__foot__label">
+                  <td colspan="3">
+                    <ol class="shoppingcart__resume">
+                      <li class="shoppingcart__resume__row">
+                        <label class="shoppingcart__resume__label">
                           Price before <abbr title="Value Added Tax">VAT</abbr>:
                         </label>
-                        <output class="shoppingcart__foot__price">&euro;2.50</output>
+                        <output class="shoppingcart__resume__price">&euro;2.50</output>
                       </li>
-                      <li class="shoppingcart__foot__resume__row">
-                        <label class="shoppingcart__foot__label">
+                      <li class="shoppingcart__resume__row">
+                        <label class="shoppingcart__resume__label">
                           <abbr title="Value Added Tax">VAT</abbr> @ <strong>20</strong>%:
                         </label>
-                        <output class="shoppingcart__foot__price">&euro;2.50</output>
+                        <output class="shoppingcart__resume__price">&euro;2.50</output>
                       </li>
-                      <li class="shoppingcart__foot__resume__row shoppingcart__foot__resume__row--final">
-                        <label class="shoppingcart__foot__label">Total to be paid:</label>
-                        <output class="shoppingcart__foot__price shoppingcart__foot__price--final">&euro;2.50</output>
+                      <li class="shoppingcart__resume__row shoppingcart__resume__row--final">
+                        <label class="shoppingcart__resume__label">Total to be paid:</label>
+                        <output class="shoppingcart__resume__price shoppingcart__resume__price--final">
+                          &euro;2.50
+                        </output>
                       </li>
                     </ol>
+                    <button type="submit" form="shoppingcart-form" class="shoppingcart__checkout">
+                      Proceed to Checkout
+                    </button>
                   </td>
                 </tr>
               </tfoot>
             </table>
 
-            <footer>
-              <button type="submit" form="shoppingcart-form" class="shoppingcart__checkout">Proceed to Checkout</button>
-            </footer>
+            <template hidden data-shop-item-template>
+              <tr>
+                <td class="shoppingcart__item">
+                  <article class="products__wrap">
+                    <h3 class="products__name"></h3>
+                    <p class="products__description"></p>
+
+                    <footer><button class="products__button">Remove</button></footer>
+                  </article>
+                </td>
+                <td class="shoppingcart__item"><output class="shoppingcart__item__price"></output></td>
+                <td class="shoppingcart__item shoppingcart__item--right">
+                  <input class="shoppingcart__item__quantity" type="number" min="1" value="1" />
+                  <button class="shoppingcart__item__button" type="button" aria-label="decrease">-</button>
+                  <button class="shoppingcart__item__button" type="button" aria-label="step up">+</button>
+                </td>
+              </tr>
+            </template>
+
+            <p class="shoppingcart__empty" hidden>&hellip;is empty</p>
           </form>
         </aside>
       </div>
@@ -214,5 +184,10 @@
         <a href="https://www.daimler.com" class="footer__logo" title="Daimler">Link to Daimler Website</a> &copy; 2019
       </div>
     </footer>
+
+    <script src="components/shoppingcart/shoppingcart.model.js"></script>
+    <script src="components/shoppingcart/shoppingcart.controller.js"></script>
+    <script src="components/shoppingcart/shoppingcart.view.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
