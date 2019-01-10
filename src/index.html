@@ -167,26 +167,28 @@
               <tfoot>
                 <tr>
                   <td colspan="3">
-                    <ol class="shoppingcart__resume">
+                    <ol data-shop-resume data-currency="&euro;" class="shoppingcart__resume">
                       <li class="shoppingcart__resume__row">
                         <label class="shoppingcart__resume__label">
                           Price before <abbr title="Value Added Tax">VAT</abbr>:
                         </label>
-                        <output class="shoppingcart__resume__price">&euro;2.50</output>
+                        <output data-shop-resume-before-vat class="shoppingcart__resume__price"></output>
                       </li>
                       <li class="shoppingcart__resume__row">
                         <label class="shoppingcart__resume__label">
-                          <abbr title="Value Added Tax">VAT</abbr> @ <strong>20</strong>%:
+                          <abbr title="Value Added Tax">VAT</abbr> @ <strong data-shop-resume-vat-rate></strong>%:
                         </label>
-                        <output class="shoppingcart__resume__price">&euro;2.50</output>
+                        <output data-shop-resume-vat class="shoppingcart__resume__price"></output>
                       </li>
                       <li class="shoppingcart__resume__row shoppingcart__resume__row--final">
                         <label class="shoppingcart__resume__label">Total to be paid:</label>
-                        <output class="shoppingcart__resume__price shoppingcart__resume__price--final">
-                          &euro;2.50
-                        </output>
+                        <output
+                          data-shop-resume-after-vat
+                          class="shoppingcart__resume__price shoppingcart__resume__price--final"
+                        ></output>
                       </li>
                     </ol>
+
                     <button type="submit" form="shoppingcart-form" class="shoppingcart__checkout">
                       Proceed to Checkout
                     </button>
