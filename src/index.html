@@ -132,7 +132,8 @@
                 <td class="shoppingcart__item shoppingcart__item--right">
                   <input data-item-quantity class="shoppingcart__item__quantity" type="number" min="1" value="1" />
                   <button
-                    data-component="decrease"
+                    data-component="quantityController"
+                    data-quantity-type="decrease"
                     class="shoppingcart__item__button"
                     type="button"
                     aria-label="decrease"
@@ -140,7 +141,8 @@
                     -
                   </button>
                   <button
-                    data-component="increase"
+                    data-component="quantityController"
+                    data-quantity-type="increase"
                     class="shoppingcart__item__button"
                     type="button"
                     aria-label="step up"
@@ -208,6 +210,7 @@
     <script src="components/shoppingcart/shoppingcart.view.js"></script>
     <script src="components/shoppingcart/shoppingcart.model.js"></script>
     <script src="components/shoppingcart/removetocart.controller.js"></script>
+    <script src="components/shoppingcart/quantity.controller.js"></script>
     <script src="components/products/addtocart.controller.js"></script>
     <script src="components/page/componentloader.js"></script>
     <script src="main.js"></script>
