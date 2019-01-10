@@ -6,7 +6,7 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "build": "npm-run-all lint css",
+        "build": "npm-run-all lint css test",
         "css": "npm-run-all css:precompile css:postcompile",
         "css:precompile": "node-sass --include-path ./src/libs-polyfills --output-style expanded --output ./src ./src/styles.scss",
         "css:postcompile": "postcss --use autoprefixer --use css-mqpacker --replace ./src/styles.css",
