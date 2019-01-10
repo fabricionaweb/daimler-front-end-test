@@ -25,6 +25,13 @@
     }
   }
 
+  &__tbody {
+    &[disabled] {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
   &__item {
     border-bottom: 1px solid $c-secondary-darker;
     padding-top: $vertical-rythm-spacing-text;

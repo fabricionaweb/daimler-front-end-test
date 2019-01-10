@@ -54,13 +54,20 @@
       return $template;
     };
 
-    const _updateCartBodyDOM = ({ products }) => {
+    const _updateCartBodyDOM = (cart) => {
       const $tbody = document.querySelector(_options.shopBody);
       const $fragment = $tbody.cloneNode();
 
-      products.map(_buildProductsRowDOM).map(($tr) => $fragment.appendChild($tr));
+      if ($tbody.getAttribute('disabled')) {
+        return false;
+      }
 
+      cart.products.map(_buildProductsRowDOM).forEach(($row) => {
+        $fragment.appendChild($row);
+      });
       $tbody.replaceWith($fragment);
+
+      return _updateResumeDOM(cart);
     };
 
     const _updateResumeDOM = ({ total, VATRate }) => {
@@ -72,6 +79,8 @@
       _$resume.querySelector(resume.beforeVAT).innerText = `${currency}${beforeVAT.toFixed(2)}`;
       _$resume.querySelector(resume.VAT).innerText = `${currency}${VAT.toFixed(2)}`;
       _$resume.querySelector(resume.afterVAT).innerText = `${currency}${afterVAT.toFixed(2)}`;
+
+      return true;
     };
 
     return {
@@ -87,11 +96,12 @@
           return _hideShopForm();
         }
 
-        _updateCartBodyDOM(cart);
-        _updateResumeDOM(cart);
+        const updated = _updateCartBodyDOM(cart);
         _displayShopForm();
 
-        this.componentsLoader();
+        if (updated) {
+          this.componentsLoader();
+        }
       },
 
       componentsLoader: function () {

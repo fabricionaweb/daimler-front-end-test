@@ -170,7 +170,7 @@
                 </tr>
               </thead>
 
-              <tbody data-shop-tbody></tbody>
+              <tbody class="shoppingcart__tbody" data-shop-tbody></tbody>
 
               <tfoot>
                 <tr>
@@ -197,7 +197,13 @@
                       </li>
                     </ol>
 
-                    <button type="submit" form="shoppingcart-form" class="shoppingcart__checkout">
+                    <button
+                      data-component="checkoutController"
+                      type="submit"
+                      form="shoppingcart-form"
+                      data-message="Sending your order&hellip;"
+                      class="shoppingcart__checkout"
+                    >
                       Proceed to Checkout
                     </button>
                   </td>
@@ -221,6 +227,7 @@
     <script src="components/shoppingcart/shoppingcart.model.js"></script>
     <script src="components/shoppingcart/removetocart.controller.js"></script>
     <script src="components/shoppingcart/quantity.controller.js"></script>
+    <script src="components/shoppingcart/checkout.controller.js"></script>
     <script src="components/products/addtocart.controller.js"></script>
     <script src="components/page/componentloader.js"></script>
     <script src="main.js"></script>
