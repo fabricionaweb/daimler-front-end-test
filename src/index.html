@@ -43,6 +43,7 @@
                   <p class="products__price">&euro;10</p>
                   <button
                     class="products__button"
+                    data-component="addtocartController"
                     data-shop-listing="{&quot;name&quot;: &quot;Towel&quot;, &quot;description&quot;: &quot;Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.&quot;, &quot;price&quot;: 10.00}"
                   >
                     Add to cart
@@ -60,6 +61,7 @@
                   <p class="products__price">&euro;5.99</p>
                   <button
                     class="products__button"
+                    data-component="addtocartController"
                     data-shop-listing="{&quot;name&quot;: &quot;Enlightening book&quot;, &quot;description&quot;: &quot;There&rsquo;s no rush out there. Take your time for a good read.&quot;, &quot;price&quot;: 5.99}"
                   >
                     Add to cart
@@ -79,6 +81,7 @@
                   <p class="products__price">&euro;49.99</p>
                   <button
                     class="products__button"
+                    data-component="addtocartController"
                     data-shop-listing="{&quot;name&quot;: &quot;Waterproof camera&quot;, &quot;description&quot;: &quot;Below the sea&rsquo;s surface, a hidden world. Do not miss out to bring those memories back home.&quot;, &quot;price&quot;: 49.99}"
                   >
                     Add to cart
@@ -98,6 +101,7 @@
                   <p class="products__price">&euro;2.50</p>
                   <button
                     class="products__button"
+                    data-component="addtocartController"
                     data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
                   >
                     Add to cart
@@ -112,6 +116,25 @@
           <h2 class="headline">Your boat's shopping cart</h2>
 
           <form id="shoppingcart-form">
+            <template hidden data-shop-item-template>
+              <tr>
+                <td class="shoppingcart__item">
+                  <article class="products__wrap">
+                    <h3 data-item-name class="products__name"></h3>
+                    <p data-item-description class="products__description"></p>
+
+                    <footer><button class="products__button">Remove</button></footer>
+                  </article>
+                </td>
+                <td class="shoppingcart__item"><output class="shoppingcart__item__price"></output></td>
+                <td class="shoppingcart__item shoppingcart__item--right">
+                  <input data-item-quantity class="shoppingcart__item__quantity" type="number" min="1" value="1" />
+                  <button class="shoppingcart__item__button" type="button" aria-label="decrease">-</button>
+                  <button class="shoppingcart__item__button" type="button" aria-label="step up">+</button>
+                </td>
+              </tr>
+            </template>
+
             <table class="shoppingcart" data-shop-form hidden>
               <thead>
                 <tr>
@@ -154,25 +177,6 @@
               </tfoot>
             </table>
 
-            <template hidden data-shop-item-template>
-              <tr>
-                <td class="shoppingcart__item">
-                  <article class="products__wrap">
-                    <h3 class="products__name"></h3>
-                    <p class="products__description"></p>
-
-                    <footer><button class="products__button">Remove</button></footer>
-                  </article>
-                </td>
-                <td class="shoppingcart__item"><output class="shoppingcart__item__price"></output></td>
-                <td class="shoppingcart__item shoppingcart__item--right">
-                  <input class="shoppingcart__item__quantity" type="number" min="1" value="1" />
-                  <button class="shoppingcart__item__button" type="button" aria-label="decrease">-</button>
-                  <button class="shoppingcart__item__button" type="button" aria-label="step up">+</button>
-                </td>
-              </tr>
-            </template>
-
             <p class="shoppingcart__empty" hidden>&hellip;is empty</p>
           </form>
         </aside>
@@ -185,9 +189,9 @@
       </div>
     </footer>
 
-    <script src="components/shoppingcart/shoppingcart.model.js"></script>
-    <script src="components/shoppingcart/shoppingcart.controller.js"></script>
     <script src="components/shoppingcart/shoppingcart.view.js"></script>
+    <script src="components/shoppingcart/shoppingcart.model.js"></script>
+    <script src="components/products/addtocart.controller.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
