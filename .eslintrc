@@ -13,6 +13,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "complexity": ["error", 4],
     "max-len": ["error", 100],
     "no-nested-ternary": ["error"],
     "no-empty-function": ["error"],
