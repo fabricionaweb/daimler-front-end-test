@@ -130,7 +130,15 @@
                 </td>
                 <td class="shoppingcart__item"><output class="shoppingcart__item__price"></output></td>
                 <td class="shoppingcart__item shoppingcart__item--right">
-                  <input data-item-quantity class="shoppingcart__item__quantity" type="number" min="1" value="1" />
+                  <input
+                    data-component="quantityController"
+                    data-quantity-type="input"
+                    data-item-quantity
+                    class="shoppingcart__item__quantity"
+                    type="number"
+                    min="1"
+                    value="1"
+                  />
                   <button
                     data-component="quantityController"
                     data-quantity-type="decrease"
