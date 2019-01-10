@@ -1,39 +1,39 @@
-require ('./shoppingcart.model');
+require('./shoppingcart.model');
 
-const NAMESPACE = 'nn',
-  MODULE_NAME = 'shoppingcartModel',
-  UPPERCASE_MODULE_NAME = MODULE_NAME.toUpperCase();
+const NAMESPACE = 'nn';
+const MODULE_NAME = 'shoppingcartModel';
+const UPPERCASE_MODULE_NAME = MODULE_NAME.toUpperCase();
 
-const _ = {
+const STUB = {
   productA: {
     name: 'a',
-    price: 1.50,
-    quantity: 1
+    price: 1.5,
+    quantity: 1,
   },
   productB: {
     name: 'b',
-    price: 2.50,
-    quantity: 2
+    price: 2.5,
+    quantity: 2,
   },
   productC: {
     name: 'c',
-    price: 3.50,
-    quantity: 3
+    price: 3.5,
+    quantity: 3,
   },
   emptyCart: {
     total: {
       beforeVAT: 0,
       afterVAT: 0,
-      VAT: 0
+      VAT: 0,
     },
-    products: []
+    products: [],
   },
   getVAT: (beforeVAT, VATRate) => {
     return (beforeVAT / 100) * VATRate;
   },
   getAfterVAT: (beforeVAT, VAT) => {
     return beforeVAT + VAT;
-  }
+  },
 };
 
 describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITHOUT state`, () => {
@@ -42,17 +42,18 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITHOUT state`, () =>
     productWithQuantity,
     cart,
     expectedBeforeVAT,
-    expectedAfterVAT
+    expectedAfterVAT;
   beforeEach(() => {
     instance = new window[NAMESPACE][MODULE_NAME]();
     instance.init();
-    productWithoutQuantity = Object.assign({}, _.productA);
+    productWithoutQuantity = Object.assign({}, STUB.productA);
     delete productWithoutQuantity.quantity;
-    productWithQuantity = Object.assign({}, _.productB);
+    productWithQuantity = Object.assign({}, STUB.productB);
   });
 
   test('the cart should be empty', () => {
-    expect(instance.getCart()).toEqual(_.emptyCart);
+    cart = instance.getCart();
+    expect(cart.products).toEqual(STUB.emptyCart.products);
   });
 
   describe('and ONE product WITH defined QUANTITY was ADDED', () => {
@@ -108,8 +109,7 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITHOUT state`, () =>
       instance.addProducts(productWithQuantity);
       cart = instance.addProducts(productWithQuantity);
 
-      expectedBeforeVAT =
-        productWithQuantity.price * productWithQuantity.quantity * 2;
+      expectedBeforeVAT = productWithQuantity.price * productWithQuantity.quantity * 2;
 
       expectedAfterVAT = expectedBeforeVAT;
     });
@@ -136,7 +136,8 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITHOUT state`, () =>
   });
 });
 
-describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIFFERENT products AND a VATRATE`, () => { // eslint-disable-line max-len
+// eslint-disable-next-line max-len
+describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIFFERENT products AND a VATRATE`, () => {
   let instance,
     productA,
     productB,
@@ -145,29 +146,26 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIF
     VATRate,
     expectedVAT,
     expectedBeforeVAT,
-    expectedAfterVAT
+    expectedAfterVAT;
 
   beforeEach(() => {
     instance = window[NAMESPACE][MODULE_NAME]();
 
-    productA = Object.assign({}, _.productA);
-    productB = Object.assign({}, _.productB);
+    productA = Object.assign({}, STUB.productA);
+    productB = Object.assign({}, STUB.productB);
     products = [productA, productB];
     VATRate = 20;
     instance.init({
-      'products': products,
-      'VATRate': VATRate
+      products: products,
+      VATRate: VATRate,
     });
     cart = instance.getCart();
 
-    expectedBeforeVAT = (productA.price * productA.quantity) +
-      (productB.price * productB.quantity);
+    expectedBeforeVAT = productA.price * productA.quantity + productB.price * productB.quantity;
 
-    expectedVAT = _.getVAT(expectedBeforeVAT, VATRate);
+    expectedVAT = STUB.getVAT(expectedBeforeVAT, VATRate);
 
-    expectedAfterVAT = _.getAfterVAT(
-      expectedBeforeVAT, expectedVAT
-    );
+    expectedAfterVAT = STUB.getAfterVAT(expectedBeforeVAT, expectedVAT);
   });
 
   it('the cart\'s products should be the same', () => {
@@ -188,14 +186,11 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIF
 
   describe('and INCREMENTED one product\'s QUANTITY', () => {
     beforeEach(() => {
-      cart = instance.changeProductQuantity(
-        productA, productA.quantity + 1);
+      cart = instance.changeProductQuantity(productA, productA.quantity + 1);
 
       expectedBeforeVAT += productA.price;
-      expectedVAT = _.getVAT(expectedBeforeVAT, VATRate);
-      expectedAfterVAT = _.getAfterVAT(
-        expectedBeforeVAT, expectedVAT
-      );
+      expectedVAT = STUB.getVAT(expectedBeforeVAT, VATRate);
+      expectedAfterVAT = STUB.getAfterVAT(expectedBeforeVAT, expectedVAT);
     });
 
     test('the cart\'s beforeVAT should be correct', () => {
@@ -213,14 +208,11 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIF
 
   describe('and DECREMENTED one product\'s QUANTITY', () => {
     beforeEach(() => {
-      cart = instance.changeProductQuantity(
-        productB, productB.quantity - 1);
+      cart = instance.changeProductQuantity(productB, productB.quantity - 1);
 
       expectedBeforeVAT -= productB.price;
-      expectedVAT = _.getVAT(expectedBeforeVAT, VATRate);
-      expectedAfterVAT = _.getAfterVAT(
-        expectedBeforeVAT, expectedVAT
-      );
+      expectedVAT = STUB.getVAT(expectedBeforeVAT, VATRate);
+      expectedAfterVAT = STUB.getAfterVAT(expectedBeforeVAT, expectedVAT);
     });
 
     test('the cart\'s beforeVAT should be correct', () => {
@@ -238,8 +230,7 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIF
 
   describe('and tried to DECREMENT one product\'s QUANTITY to lower than 1', () => {
     beforeEach(() => {
-      cart = instance.changeProductQuantity(
-        productA, 0);
+      cart = instance.changeProductQuantity(productA, 0);
     });
 
     test('the cart\'s beforeVAT should be still be same', () => {
@@ -252,10 +243,8 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIF
       cart = instance.removeProducts(productA);
 
       expectedBeforeVAT -= productA.price;
-      expectedVAT = _.getVAT(expectedBeforeVAT, VATRate);
-      expectedAfterVAT = _.getAfterVAT(
-        expectedBeforeVAT, expectedVAT
-      );
+      expectedVAT = STUB.getVAT(expectedBeforeVAT, VATRate);
+      expectedAfterVAT = STUB.getAfterVAT(expectedBeforeVAT, expectedVAT);
     });
 
     test('the cart\'s products should reflect this', () => {
@@ -281,13 +270,13 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIF
     });
 
     test('the cart should be empty', () => {
-      expect(cart).toEqual(_.emptyCart);
+      expect(cart.products).toEqual(STUB.emptyCart.products);
     });
   });
 
   describe('and a NON EXISTING product was tried to be REMOVED', () => {
     beforeEach(() => {
-      const product = Object.assign({}, _.productC);
+      const product = Object.assign({}, STUB.productC);
       cart = instance.removeProducts(product);
     });
 
@@ -298,6 +287,7 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIF
 
   test('destroying the instance should empty the cart', () => {
     instance.destroy();
-    expect(instance.getCart()).toEqual(_.emptyCart);
+    cart = instance.getCart();
+    expect(cart.products).toEqual(STUB.emptyCart.products);
   });
 });
