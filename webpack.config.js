@@ -97,6 +97,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './index.html',
+      chunksSortMode: 'none',
     }),
   ],
 };

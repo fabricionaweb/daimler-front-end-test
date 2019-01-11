@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const NAMESPACE = 'nn';
+import componentLoader from './components/page/componentloader';
 
-  const loader = new window[NAMESPACE].componentLoader();
+document.addEventListener('DOMContentLoaded', function () {
+  const loader = new componentLoader();
   const elements = document.querySelectorAll('[data-component]');
 
   loader.init(elements);

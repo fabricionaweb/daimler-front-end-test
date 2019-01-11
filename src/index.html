@@ -43,7 +43,7 @@
                   <p class="products__price">&euro;10</p>
                   <button
                     class="products__button"
-                    data-component="addtocartController"
+                    data-component="products/addtocart"
                     data-shop-listing="{&quot;name&quot;: &quot;Towel&quot;, &quot;description&quot;: &quot;Sunny days and warm weather - you clearly need it after a refreshing jump into the cool sea.&quot;, &quot;price&quot;: 10.00}"
                   >
                     Add to cart
@@ -61,7 +61,7 @@
                   <p class="products__price">&euro;5.99</p>
                   <button
                     class="products__button"
-                    data-component="addtocartController"
+                    data-component="products/addtocart"
                     data-shop-listing="{&quot;name&quot;: &quot;Enlightening book&quot;, &quot;description&quot;: &quot;There&rsquo;s no rush out there. Take your time for a good read.&quot;, &quot;price&quot;: 5.99}"
                   >
                     Add to cart
@@ -81,7 +81,7 @@
                   <p class="products__price">&euro;49.99</p>
                   <button
                     class="products__button"
-                    data-component="addtocartController"
+                    data-component="products/addtocart"
                     data-shop-listing="{&quot;name&quot;: &quot;Waterproof camera&quot;, &quot;description&quot;: &quot;Below the sea&rsquo;s surface, a hidden world. Do not miss out to bring those memories back home.&quot;, &quot;price&quot;: 49.99}"
                   >
                     Add to cart
@@ -101,7 +101,7 @@
                   <p class="products__price">&euro;2.50</p>
                   <button
                     class="products__button"
-                    data-component="addtocartController"
+                    data-component="products/addtocart"
                     data-shop-listing="{&quot;name&quot;: &quot;Pinwheel&quot;, &quot;description&quot;: &quot;Wondering what to do with only a light breeze? Back to your childhood!&quot;, &quot;price&quot;: 2.50}"
                   >
                     Add to cart
@@ -124,14 +124,14 @@
                     <p data-item-description class="products__description"></p>
 
                     <footer>
-                      <button data-component="removetocartController" class="products__button">Remove</button>
+                      <button data-component="shoppingcart/removetocart" class="products__button">Remove</button>
                     </footer>
                   </article>
                 </td>
                 <td class="shoppingcart__item"><output class="shoppingcart__item__price"></output></td>
                 <td class="shoppingcart__item shoppingcart__item--right">
                   <input
-                    data-component="quantityController"
+                    data-component="shoppingcart/quantity"
                     data-quantity-type="input"
                     data-item-quantity
                     class="shoppingcart__item__quantity"
@@ -140,7 +140,7 @@
                     value="1"
                   />
                   <button
-                    data-component="quantityController"
+                    data-component="shoppingcart/quantity"
                     data-quantity-type="decrease"
                     class="shoppingcart__item__button"
                     type="button"
@@ -149,7 +149,7 @@
                     -
                   </button>
                   <button
-                    data-component="quantityController"
+                    data-component="shoppingcart/quantity"
                     data-quantity-type="increase"
                     class="shoppingcart__item__button"
                     type="button"
@@ -198,7 +198,7 @@
                     </ol>
 
                     <button
-                      data-component="checkoutController"
+                      data-component="shoppingcart/checkout"
                       type="submit"
                       form="shoppingcart-form"
                       data-message="Sending your order&hellip;"
