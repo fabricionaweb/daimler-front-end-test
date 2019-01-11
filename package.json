@@ -6,34 +6,41 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "build": "npm-run-all lint css test",
-        "css": "npm-run-all css:precompile css:postcompile",
-        "css:precompile": "node-sass --include-path ./src/libs-polyfills --output-style expanded --output ./src ./src/styles.scss",
-        "css:postcompile": "postcss --use autoprefixer --use css-mqpacker --replace ./src/styles.css",
-        "lint": "npm-run-all --parallel lint:*",
-        "lint:css": "stylelint \"./src/**/*.scss\"",
-        "lint:js": "eslint --ignore-pattern ./src/libs-polyfills ./src/**/*.js",
+        "build": "npm run lint && NODE_ENV=production webpack -p",
+        "lint": "npm run lint:css && npm run lint:js && npm run lint:html",
+        "lint:css": "stylelint ./src/**/*.scss",
+        "lint:js": "eslint ./src/**/*.js",
         "lint:html": "html-validator --verbose --file ./src/index.html",
         "test": "jest --coverage",
-        "watch:css": "npm run css && onchange \"./src/**/*.scss\" -- npm run css",
-        "watch:lint": "npm run lint && onchange \"./src/**/*.{scss|html|js}\" -- npm run lint",
-        "watch:test": "npm run test -- --watch",
-        "start": "npm-run-all build serve",
-        "serve": "http-serve --gzip -o -c-1 ./src"
+        "start": "webpack-dev-server --inline",
+        "serve": "http-serve --gzip -o -c-1 ./dist"
     },
     "devDependencies": {
         "autoprefixer": "^9.4.4",
+        "clean-webpack-plugin": "^1.0.0",
+        "css-loader": "^2.1.0",
         "css-mqpacker": "^7.0.0",
         "eslint": "^5.12.0",
+        "eslint-loader": "^2.1.1",
+        "file-loader": "^3.0.1",
+        "html-loader": "^0.5.5",
         "html-validator-cli": "^4.1.4",
+        "html-webpack-plugin": "^3.2.0",
         "http-serve": "^1.0.1",
+        "image-webpack-loader": "^4.6.0",
         "jest": "^23.6.0",
+        "mini-css-extract-plugin": "^0.5.0",
+        "modern-normalize": "^0.5.0",
         "node-sass": "^4.11.0",
-        "npm-run-all": "^4.1.5",
-        "onchange": "^5.2.0",
-        "postcss-cli": "^6.1.1",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
         "stylelint": "^9.9.0",
-        "stylelint-config-standard": "^18.2.0"
+        "stylelint-config-standard": "^18.2.0",
+        "stylelint-webpack-plugin": "^0.10.5",
+        "webpack": "^4.28.4",
+        "webpack-cli": "^3.2.1",
+        "webpack-dev-server": "^3.1.14"
     },
     "engines": {
         "node": "^8.11.3"
@@ -42,7 +49,7 @@
         "testEnvironment": "node",
         "collectCoverage": true,
         "coverageReporters": [
-          "html"
+            "html"
         ],
         "globals": {
             "window": {}
