@@ -1,6 +1,5 @@
-require('./shoppingcart.model');
+const shoppingcartModel = require('./shoppingcart.model');
 
-const NAMESPACE = 'nn';
 const MODULE_NAME = 'shoppingcartModel';
 const UPPERCASE_MODULE_NAME = MODULE_NAME.toUpperCase();
 
@@ -44,7 +43,7 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITHOUT state`, () =>
     expectedBeforeVAT,
     expectedAfterVAT;
   beforeEach(() => {
-    instance = new window[NAMESPACE][MODULE_NAME]();
+    instance = new shoppingcartModel();
     instance.init();
     productWithoutQuantity = Object.assign({}, STUB.productA);
     delete productWithoutQuantity.quantity;
@@ -149,7 +148,7 @@ describe(`Instance of ${UPPERCASE_MODULE_NAME} initialized WITH state of TWO DIF
     expectedAfterVAT;
 
   beforeEach(() => {
-    instance = window[NAMESPACE][MODULE_NAME]();
+    instance = shoppingcartModel();
 
     productA = Object.assign({}, STUB.productA);
     productB = Object.assign({}, STUB.productB);

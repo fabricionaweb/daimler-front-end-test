@@ -86,4 +86,4 @@ const shoppingcartModel = function () {
   };
 };
 
-export default shoppingcartModel;
+module.exports = shoppingcartModel;
