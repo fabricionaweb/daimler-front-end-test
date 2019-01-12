@@ -50,7 +50,7 @@ export class shoppingcartModel {
     if (alreadyInCart) {
       this.changeProductQuantity(product, alreadyInCart.quantity + product.quantity);
     } else {
-      this.state.products.push(Object.assign({}, product));
+      this.state.products = this.state.products.concat(Object.assign({}, product));
     }
 
     return this.cart;
