@@ -1,12 +1,12 @@
 import componentLoader from '../page/componentloader';
 
-let _$shopForm, _$template, _$resume, _loader;
-const _options = {
+const OPTIONS = {
   shopForm: '[data-shop-form]',
   shopBody: '[data-shop-tbody]',
   currency: '€',
   shopItem: {
     selector: '[data-shop-item-template]',
+    productDataset: 'data-product',
     productName: '[data-item-name]',
     productDescription: '[data-item-description]',
     productPrice: '[data-item-price]',
@@ -21,95 +21,82 @@ const _options = {
   },
 };
 
-const shoppingcartView = function () {
-  const _getShopFormElement = () => {
-    return _$shopForm || document.querySelector(_options.shopForm);
-  };
+export class shoppingcartView {
+  constructor () {
+    this.$shopForm = document.querySelector(OPTIONS.shopForm);
+    this.$template = document.querySelector(OPTIONS.shopItem.selector);
+    this.$resume = document.querySelector(OPTIONS.resume.selector);
+  }
 
-  const _getTemplateElement = () => {
-    return _$template || document.querySelector(_options.shopItem.selector);
-  };
+  hideShopForm () {
+    this.$shopForm.setAttribute('hidden', true);
+  }
 
-  const _getResumeElement = () => {
-    return _$resume || document.querySelector(_options.resume.selector);
-  };
+  displayShopForm () {
+    this.$shopForm.removeAttribute('hidden');
+  }
 
-  const _getComponentLoader = () => {
-    return _loader || new componentLoader();
-  };
+  buildProductsRowDOM (product) {
+    const {
+      productDataset,
+      productName,
+      productDescription,
+      productPrice,
+      productQuantity,
+    } = OPTIONS.shopItem;
 
-  const _hideShopForm = () => _$shopForm.setAttribute('hidden', true);
-  const _displayShopForm = () => _$shopForm.removeAttribute('hidden');
+    const $row = document.importNode(this.$template.content, true);
 
-  const _buildProductsRowDOM = (product) => {
-    const { productName, productDescription, productPrice, productQuantity } = _options.shopItem;
-    const $template = document.importNode(_$template.content, true);
+    $row.firstElementChild.setAttribute(productDataset, JSON.stringify(product));
 
-    $template.firstElementChild.setAttribute('data-product', JSON.stringify(product));
+    $row.querySelector(productName).innerText = product.name;
+    $row.querySelector(productDescription).innerText = product.description;
+    $row.querySelector(productPrice).innerText = `${OPTIONS.currency}${product.price}`;
+    $row.querySelector(productQuantity).value = product.quantity;
 
-    $template.querySelector(productName).innerText = product.name;
-    $template.querySelector(productDescription).innerText = product.description;
-    $template.querySelector(productPrice).innerText = `${_options.currency}${product.price}`;
-    $template.querySelector(productQuantity).value = product.quantity;
+    return $row;
+  }
 
-    return $template;
-  };
+  updateCartBodyDOM ({ products }) {
+    const $shopBody = document.querySelector(OPTIONS.shopBody);
+    const $fragment = $shopBody.cloneNode();
 
-  const _updateCartBodyDOM = (cart) => {
-    const $tbody = document.querySelector(_options.shopBody);
-    const $fragment = $tbody.cloneNode();
-
-    if ($tbody.getAttribute('disabled')) {
+    if ($shopBody.getAttribute('disabled')) {
       return false;
     }
 
-    cart.products.map(_buildProductsRowDOM).forEach(($row) => {
-      $fragment.appendChild($row);
-    });
-    $tbody.replaceWith($fragment);
+    const $children = products.map(this.buildProductsRowDOM.bind(this));
+    $children.forEach(($row) => $fragment.appendChild($row));
 
-    return _updateResumeDOM(cart);
-  };
+    $shopBody.replaceWith($fragment);
+  }
 
-  const _updateResumeDOM = ({ total, VATRate }) => {
+  updateResumeDOM ({ total, VATRate }) {
     const { beforeVAT, VAT, afterVAT } = total;
-    const { resume, currency } = _options;
+    const { resume, currency } = OPTIONS;
+    const $resume = this.$resume;
 
-    _$resume.querySelector(resume.VATRate).innerText = `${VATRate}%`;
-    _$resume.querySelector(resume.beforeVAT).innerText = `${currency}${beforeVAT.toFixed(2)}`;
-    _$resume.querySelector(resume.VAT).innerText = `${currency}${VAT.toFixed(2)}`;
-    _$resume.querySelector(resume.afterVAT).innerText = `${currency}${afterVAT.toFixed(2)}`;
+    $resume.querySelector(resume.VATRate).innerText = `${VATRate}%`;
+    $resume.querySelector(resume.beforeVAT).innerText = `${currency}${beforeVAT.toFixed(2)}`;
+    $resume.querySelector(resume.VAT).innerText = `${currency}${VAT.toFixed(2)}`;
+    $resume.querySelector(resume.afterVAT).innerText = `${currency}${afterVAT.toFixed(2)}`;
+  }
 
-    return true;
-  };
+  refresh (cart) {
+    if (!cart.products.length) {
+      return this.hideShopForm();
+    }
 
-  return {
-    init: function () {
-      _$shopForm = _getShopFormElement();
-      _$template = _getTemplateElement();
-      _$resume = _getResumeElement();
-      _loader = _getComponentLoader();
-    },
+    this.updateCartBodyDOM(cart);
+    this.updateResumeDOM(cart);
+    this.displayShopForm();
+    this.componentsLoader();
+  }
 
-    refresh: function (cart) {
-      if (!cart.products.length) {
-        return _hideShopForm();
-      }
-
-      const updated = _updateCartBodyDOM(cart);
-      _displayShopForm();
-
-      if (updated) {
-        this.componentsLoader();
-      }
-    },
-
-    componentsLoader: function () {
-      const elements = _$shopForm.querySelectorAll('[data-component]');
-
-      _loader.init(elements);
-    },
-  };
-};
+  componentsLoader () {
+    const loader = new componentLoader(this.$shopForm);
+    loader.init();
+  }
+}
 
 export default shoppingcartView;

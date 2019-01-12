@@ -1,33 +1,35 @@
 import shoppingcartView from '../shoppingcart/shoppingcart.view';
 
-const _view = new shoppingcartView();
-const _options = {
+const OPTIONS = {
   dataset: 'shopListing',
 };
 
-const addToCart = function ($element) {
-  let _model;
+export class addToCart {
+  constructor ($element, sharedModel) {
+    this.$element = $element;
+    this.model = sharedModel;
+    this.view = new shoppingcartView();
+  }
 
-  return {
-    init: function (sharedModel) {
-      _model = sharedModel;
+  init () {
+    this.product = this.getProduct();
+    this.$element.addEventListener('click', this.onAddToCartClick.bind(this));
+  }
 
-      _view.init();
+  getProduct () {
+    const product = this.$element.dataset[OPTIONS.dataset];
+    return JSON.parse(product);
+  }
 
-      $element.addEventListener('click', this.onAddToCartClick.bind(this));
-    },
+  onAddToCartClick (event) {
+    event.preventDefault();
 
-    onAddToCartClick: function ({ target }) {
-      const { dataset } = _options;
-
-      const product = JSON.parse(target.dataset[dataset]);
-      const cart = _model.addProducts(product);
-
-      _view.refresh(cart);
-    },
-  };
-};
+    const cart = this.model.addProducts(this.product);
+    this.view.refresh(cart);
+  }
+}
 
 export default ($element, sharedModel) => {
-  new addToCart($element).init(sharedModel);
+  const component = new addToCart($element, sharedModel);
+  component.init();
 };

@@ -1,43 +1,42 @@
 import shoppingcartView from './shoppingcart.view';
 
-const _view = new shoppingcartView();
-const _options = {
-  closest: '[data-product]',
-  dataset: 'product',
+const OPTIONS = {
+  closest: {
+    selector: '[data-product]',
+    dataset: 'product',
+  },
 };
 
-const removeToCart = function ($element) {
-  let _model, _product;
+export class removeToCart {
+  constructor ($element, sharedModel) {
+    this.$element = $element;
+    this.model = sharedModel;
+    this.view = new shoppingcartView();
+  }
 
-  return {
-    init: function (sharedModel) {
-      _model = sharedModel;
-      _product = this.getProduct();
+  init () {
+    this.product = this.getProduct();
+    this.$element.addEventListener('click', this.onRemoveToCartClick.bind(this));
+  }
 
-      _view.init();
+  getProduct () {
+    const { selector, dataset } = OPTIONS.closest;
 
-      $element.addEventListener('click', this.onRemoveToCartClick.bind(this));
-    },
+    const $closest = this.$element.closest(selector);
+    const product = $closest.dataset[dataset];
 
-    getProduct: function () {
-      const { closest, dataset } = _options;
+    return JSON.parse(product);
+  }
 
-      const $closest = $element.closest(closest);
-      const product = $closest.dataset[dataset];
+  onRemoveToCartClick (event) {
+    event.preventDefault();
 
-      return JSON.parse(product);
-    },
-
-    onRemoveToCartClick: function (event) {
-      event.preventDefault();
-
-      const cart = _model.removeProducts(_product);
-
-      _view.refresh(cart);
-    },
-  };
-};
+    const cart = this.model.removeProducts(this.product);
+    this.view.refresh(cart);
+  }
+}
 
 export default ($element, sharedModel) => {
-  new removeToCart($element).init(sharedModel);
+  const component = new removeToCart($element, sharedModel);
+  component.init();
 };

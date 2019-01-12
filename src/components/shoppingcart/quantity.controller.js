@@ -1,7 +1,6 @@
 import shoppingcartView from './shoppingcart.view';
 
-const _view = new shoppingcartView();
-const _options = {
+const OPTIONS = {
   closest: {
     selector: '[data-product]',
     dataset: 'product',
@@ -9,59 +8,59 @@ const _options = {
   typeDataset: 'quantityType',
 };
 
-const quantity = function ($element) {
-  let _model, _product, _type;
+export class quantity {
+  constructor ($element, sharedModel) {
+    this.$element = $element;
+    this.model = sharedModel;
+    this.view = new shoppingcartView();
 
-  return {
-    init: function (sharedModel) {
-      _model = sharedModel;
-      _product = this.getProduct();
-      _type = $element.dataset[_options.typeDataset];
+    this.type = this.$element.dataset[OPTIONS.typeDataset];
+  }
 
-      _view.init();
+  init () {
+    this.product = this.getProduct();
 
-      if (_type === 'input') {
-        $element.addEventListener('blur', this.onQuantityBlur.bind(this));
-      } else {
-        $element.addEventListener('click', this.onQuantityClick.bind(this));
-      }
-    },
+    if (this.type === 'input') {
+      return this.$element.addEventListener('blur', this.onQuantityBlur.bind(this));
+    }
 
-    getProduct: function () {
-      const { closest } = _options;
+    this.$element.addEventListener('click', this.onQuantityClick.bind(this));
+  }
 
-      const $product = $element.closest(closest.selector);
-      const product = $product.dataset[closest.dataset];
+  getProduct () {
+    const { closest } = OPTIONS;
 
-      return JSON.parse(product);
-    },
+    const $product = this.$element.closest(closest.selector);
+    const product = $product.dataset[closest.dataset];
 
-    onQuantityClick: function (event) {
-      event.preventDefault();
-      let newQuantity;
+    return JSON.parse(product);
+  }
 
-      if (_type === 'increase') {
-        newQuantity = _product.quantity + 1;
-      }
+  onQuantityClick (event) {
+    event.preventDefault();
+    let newQuantity;
 
-      if (_type === 'decrease') {
-        newQuantity = _product.quantity - 1;
-      }
+    if (this.type === 'increase') {
+      newQuantity = this.product.quantity + 1;
+    } else if (this.type === 'decrease') {
+      newQuantity = this.product.quantity - 1;
+    }
 
-      const cart = _model.changeProductQuantity(_product, newQuantity);
+    this.changeQuantity(newQuantity);
+  }
 
-      _view.refresh(cart);
-    },
+  onQuantityBlur ({ target }) {
+    const newQuantity = parseInt(target.value);
+    this.changeQuantity(newQuantity);
+  }
 
-    onQuantityBlur: function ({ target }) {
-      const newQuantity = parseInt(target.value);
-      const cart = _model.changeProductQuantity(_product, newQuantity);
-
-      _view.refresh(cart);
-    },
-  };
-};
+  changeQuantity (newQuantity) {
+    const cart = this.model.changeProductQuantity(this.product, newQuantity);
+    this.view.refresh(cart);
+  }
+}
 
 export default ($element, sharedModel) => {
-  new quantity($element).init(sharedModel);
+  const component = new quantity($element, sharedModel);
+  component.init();
 };

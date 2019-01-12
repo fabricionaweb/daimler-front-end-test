@@ -1,89 +1,83 @@
-const shoppingcartModel = function () {
-  let _state;
+const DEFAULT_STATE = {
+  VATRate: 0,
+  products: [],
+  total: {
+    beforeVAT: 0,
+    VAT: 0,
+    afterVAT: 0,
+  },
+};
 
-  const _defaultState = {
-    VATRate: 0,
-    products: [],
-    total: {
-      beforeVAT: 0,
-      VAT: 0,
-      afterVAT: 0,
-    },
-  };
+export class shoppingcartModel {
+  constructor (initialState = {}) {
+    this.state = Object.assign({}, DEFAULT_STATE, initialState);
+  }
 
-  const _getProductOnCart = (product) => {
-    return _state.products.find(({ name }) => name === product.name);
-  };
+  get cart () {
+    const { VATRate, products } = this.state;
 
-  const _filterProducts = (products) => {
+    const reduceProductsPrice = (prev, { price, quantity }) => {
+      return prev + price * quantity;
+    };
+
+    const beforeVAT = products.reduce(reduceProductsPrice, 0);
+    const VAT = (beforeVAT / 100) * VATRate;
+    const afterVAT = beforeVAT + VAT;
+
+    const total = {
+      beforeVAT,
+      VAT,
+      afterVAT,
+    };
+
+    return Object.assign({}, this.state, { total });
+  }
+
+  getProductOnCart (product) {
+    return this.state.products.find(({ name }) => name === product.name);
+  }
+
+  filterProducts (products) {
+    const filterNames = products.map(({ name }) => name);
+    return this.state.products.filter(({ name }) => !filterNames.includes(name));
+  }
+
+  addProducts (product) {
+    product.quantity = product.quantity || 1;
+
+    const alreadyInCart = this.getProductOnCart(product);
+
+    if (alreadyInCart) {
+      this.changeProductQuantity(product, alreadyInCart.quantity + product.quantity);
+    } else {
+      this.state.products.push(Object.assign({}, product));
+    }
+
+    return this.cart;
+  }
+
+  changeProductQuantity (product, newQuantity) {
+    const productInCart = this.getProductOnCart(product);
+
+    newQuantity = parseInt(newQuantity);
+    productInCart.quantity = newQuantity < 1 ? 1 : newQuantity;
+
+    return this.cart;
+  }
+
+  removeProducts (products) {
     if (!Array.isArray(products)) {
       products = [products];
     }
 
-    const filterNames = products.map(({ name }) => name);
-    return _state.products.filter(({ name }) => !filterNames.includes(name));
-  };
+    this.state.products = this.filterProducts(products);
+    return this.cart;
+  }
 
-  const _reduceProductsPrice = (prev, { price, quantity }) => {
-    return prev + price * quantity;
-  };
+  destroy () {
+    this.state = Object.assign({}, DEFAULT_STATE);
+    return this.cart;
+  }
+}
 
-  return {
-    init: function (initialState = {}) {
-      _state = Object.assign({}, _defaultState, initialState);
-    },
-
-    getCart: function () {
-      const { VATRate, products } = _state;
-
-      const beforeVAT = products.reduce(_reduceProductsPrice, 0);
-      const VAT = (beforeVAT / 100) * VATRate;
-      const afterVAT = beforeVAT + VAT;
-
-      const total = {
-        beforeVAT,
-        VAT,
-        afterVAT,
-      };
-
-      return Object.assign({}, _state, { total });
-    },
-
-    addProducts: function (product) {
-      product.quantity = product.quantity || 1;
-
-      const alreadyInCart = _getProductOnCart(product);
-
-      if (alreadyInCart) {
-        this.changeProductQuantity(product, alreadyInCart.quantity + product.quantity);
-      } else {
-        _state.products.push(Object.assign({}, product));
-      }
-
-      return this.getCart();
-    },
-
-    changeProductQuantity: function (product, newQuantity) {
-      const productInCart = _getProductOnCart(product);
-
-      newQuantity = parseInt(newQuantity);
-      productInCart.quantity = newQuantity < 1 ? 1 : newQuantity;
-
-      return this.getCart();
-    },
-
-    removeProducts: function (products) {
-      _state.products = _filterProducts(products);
-
-      return this.getCart();
-    },
-
-    destroy: function () {
-      _state = _defaultState;
-
-      return this.getCart();
-    },
-  };
-};
-
-module.exports = shoppingcartModel;
+export default shoppingcartModel;

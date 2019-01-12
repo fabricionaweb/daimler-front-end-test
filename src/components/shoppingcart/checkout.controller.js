@@ -1,32 +1,30 @@
-const _options = {
-  messageDataset: 'message',
+const OPTIONS = {
   shopBody: '[data-shop-tbody]',
+  messageDataset: 'message',
 };
 
-const checkout = function ($element) {
-  let _message, _$tbody;
+export class checkout {
+  constructor ($element) {
+    this.$element = $element;
+    this.$shopBody = document.querySelector(OPTIONS.shopBody);
+    this.message = $element.dataset[OPTIONS.messageDataset];
+  }
 
-  return {
-    init: function () {
-      const { messageDataset, shopBody } = _options;
+  init () {
+    this.$element.addEventListener('click', this.onCheckoutClick.bind(this));
+  }
 
-      _$tbody = document.querySelector(shopBody);
-      _message = $element.dataset[messageDataset];
+  onCheckoutClick (event) {
+    event.preventDefault();
 
-      $element.addEventListener('click', this.onCheckoutClick.bind(this));
-    },
+    this.$element.setAttribute('disabled', 'disabled');
+    this.$element.innerText = this.message;
 
-    onCheckoutClick: function (event) {
-      event.preventDefault();
-
-      $element.setAttribute('disabled', 'disabled');
-      $element.innerText = _message;
-
-      _$tbody.setAttribute('disabled', 'disabled');
-    },
-  };
-};
+    this.$shopBody.setAttribute('disabled', 'disabled');
+  }
+}
 
 export default ($element) => {
-  new checkout($element).init();
+  const component = new checkout($element);
+  component.init();
 };
