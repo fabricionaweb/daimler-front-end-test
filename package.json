@@ -12,6 +12,7 @@
         "lint:js": "eslint ./src/**/*.js",
         "lint:html": "html-validator --verbose --file ./src/index.html",
         "test": "jest --coverage",
+        "watch:test": "npm run test -- --watchAll",
         "start": "webpack-dev-server --inline",
         "serve": "npm run build && http-serve --gzip -o -c-1 ./dist"
     },
